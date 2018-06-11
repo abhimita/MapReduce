@@ -45,7 +45,6 @@ public class MinMaxCountTuple {
             userComment.setComment(fields[2]);
             userName.set(fields[0]);
             context.write(userName, userComment);
-            System.out.println(userName);
         }
     }
 
@@ -58,7 +57,6 @@ public class MinMaxCountTuple {
             Text json = new Text();
 
             for (UserComment value : values) {
-                System.out.println(value.getCommentDateTime());
                 if (LocalDateTime.parse(value.getCommentDateTime(), YEAR_MONTH_DAY_HOUR_MIN_SEC).isAfter(LocalDateTime.parse(maxCommentDateTime, YEAR_MONTH_DAY_HOUR_MIN_SEC))) {
                     maxCommentDateTime = value.getCommentDateTime();
                 }
@@ -80,7 +78,7 @@ public class MinMaxCountTuple {
         LOGGER.info(String.format("Generating input data in %s", inputPath));
         try (
                 FSDataOutputStream fsDataOutputStream = fs.create(new Path(inputPath + "//data.txt"));
-                PrintWriter writer = new PrintWriter(fsDataOutputStream);
+                PrintWriter writer = new PrintWriter(fsDataOutputStream)
         ) {
             for (String line : MinMaxCountTupleDataGenerator.generate()) {
                 writer.write(line + "\n");
@@ -90,17 +88,18 @@ public class MinMaxCountTuple {
         job.setJarByClass(MinMaxCountTuple.class);
         job.setMapperClass(MinMaxCountTupleMapper.class);
         job.setReducerClass(MinMaxCountTupleReducer.class);
+        //job.setCombinerClass(MinMaxCountTupleReducer.class);
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(UserComment.class);
         job.setInputFormatClass(TextInputFormat.class);
-        job.setOutputValueClass(Text.class);
+        job.setOutputValueClass(NullWritable.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputFormatClass(TextOutputFormat.class);
         FileInputFormat.setInputPaths(job, new Path(inputPath));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
         job.setNumReduceTasks(1);
+        LOGGER.info("Starting mapreduce step");
         boolean status = job.waitForCompletion(true);
-        System.out.println(status);
         if (status) {
             LOGGER.info("Map reduce job completes successfully");
         } else {
