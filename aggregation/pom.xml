@@ -18,6 +18,9 @@
     <modules>
         <module>wordcount</module>
         <module>minmaxcounttuple</module>
+        <module>average</module>
+        <module>Average</module>
+        <module>average</module>
     </modules>
 
     <properties>
