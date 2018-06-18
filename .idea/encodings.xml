@@ -3,9 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aggregation" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/aggregation/Average" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aggregation/average" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/aggregation/average" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aggregation/median" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aggregation/minmaxcounttuple" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aggregation/wordcount" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/utility" charset="UTF-8" />
