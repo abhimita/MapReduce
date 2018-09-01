@@ -9,6 +9,7 @@
         <module name="average" />
         <module name="median" />
         <module name="minmaxcounttuple" />
+        <module name="parallelgrep" />
         <module name="utility" />
         <module name="wordcount" />
       </profile>

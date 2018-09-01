@@ -11,6 +11,7 @@
     <modules>
         <module>aggregation</module>
         <module>utility</module>
+        <module>filter</module>
     </modules>
 
     <name>mapreduce</name>
